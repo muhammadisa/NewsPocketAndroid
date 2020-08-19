@@ -1,4 +1,4 @@
-package com.xoxoer.newspocket.ui.viewmodels.example
+package com.xoxoer.newspocket.ui.viewmodels
 
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
@@ -13,7 +13,6 @@ import com.xoxoer.newspocket.repository.example.ExampleRepository
 import com.xoxoer.newspocket.utils.rx.ApiSingleObserver
 import com.xoxoer.newspocket.utils.rx.Error
 import com.xoxoer.lifemarklibrary.Lifemark
-import com.xoxoer.newspocket.ui.viewmodels.ViewModelContracts
 import io.reactivex.disposables.CompositeDisposable
 
 class ExampleViewModel @ViewModelInject constructor(

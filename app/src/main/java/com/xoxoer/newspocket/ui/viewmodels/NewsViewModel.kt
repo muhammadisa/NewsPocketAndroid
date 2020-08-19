@@ -1,4 +1,4 @@
-package com.xoxoer.newspocket.ui.viewmodels.source
+package com.xoxoer.newspocket.ui.viewmodels
 
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
@@ -9,16 +9,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.xoxoer.lifemarklibrary.Lifemark
-import com.xoxoer.newspocket.model.example.Example
+import com.xoxoer.newspocket.model.headline.Headlines
+import com.xoxoer.newspocket.model.source.Source
 import com.xoxoer.newspocket.model.source.Sources
-import com.xoxoer.newspocket.repository.source.SourceRepository
-import com.xoxoer.newspocket.ui.viewmodels.ViewModelContracts
+import com.xoxoer.newspocket.repository.news.NewsRepository
 import com.xoxoer.newspocket.utils.rx.ApiSingleObserver
 import com.xoxoer.newspocket.utils.rx.Error
 import io.reactivex.disposables.CompositeDisposable
 
-class SourceViewModel @ViewModelInject constructor(
-    private val sourceRepository: SourceRepository,
+class NewsViewModel @ViewModelInject constructor(
+    private val newsRepository: NewsRepository,
     private val lifemark: Lifemark,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel(), ViewModelContracts {
@@ -28,10 +28,16 @@ class SourceViewModel @ViewModelInject constructor(
     override val error = ObservableField<Boolean>()
     override val errorReason = ObservableField<String>()
 
+    var source = ObservableField<Source>()
+
     private val _sourceSuccess = MutableLiveData<Sources>()
     val sourceSuccess: LiveData<Sources>
         get() = _sourceSuccess
-    
+
+    private val _headlineSuccess = MutableLiveData<Headlines>()
+    val headlineSuccess: LiveData<Headlines>
+        get() = _headlineSuccess
+
     private fun <T> errorDispatcher(
         errorReason: String,
         targetMutable: MutableLiveData<T>
@@ -68,12 +74,29 @@ class SourceViewModel @ViewModelInject constructor(
                 }
             }
         }
-    
+
     fun fetchSource() {
-        sourceRepository.fetchSource(
-            {onStart()},
-            {onFinish()},
+        newsRepository.fetchSource(
+            { onStart() },
+            { onFinish() },
             handler(_sourceSuccess)
+        )
+    }
+
+    fun fetchHeadline() {
+        newsRepository.fetchHeadline(
+            { onStart() },
+            { fetchSource() },
+            handler(_headlineSuccess)
+        )
+    }
+
+    fun fetchHeadlineBySource() {
+        newsRepository.fetchHeadlineBySource(
+            source.get()!!.id,
+            { onStart() },
+            { onFinish() },
+            handler(_headlineSuccess)
         )
     }
 

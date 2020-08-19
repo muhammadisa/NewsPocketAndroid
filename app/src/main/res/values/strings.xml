@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Newspocket</string>
+    <string name="app_domain">newspocket</string>
     <string name="newspocket_title">Newspocket</string>
     <string name="search_news_source">Search news source</string>
     <string name="pocket_newspaper">Pocket newspaper</string>
     <string name="top_headlines">Top Headlines</string>
     <string name="news_sources">News Sources</string>
+    <string name="top_headline_from">Top headline from</string>
 </resources>

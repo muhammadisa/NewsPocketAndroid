@@ -1,4 +1,4 @@
-package com.xoxoer.newspocket.network.services.headline
+package com.xoxoer.newspocket.model.headline
 
 data class Source(
     val id: Any,

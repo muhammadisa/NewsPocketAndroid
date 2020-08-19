@@ -10,7 +10,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.xoxoer.newspocket.RxTrampolineSchedulerRule
 import com.xoxoer.newspocket.model.example.Example
 import com.xoxoer.newspocket.repository.example.ExampleRepository
-import com.xoxoer.newspocket.ui.viewmodels.example.ExampleViewModel
+import com.xoxoer.newspocket.ui.viewmodels.ExampleViewModel
 import com.xoxoer.newspocket.utils.MockUtil
 import kotlinx.coroutines.runBlocking
 import org.junit.Before

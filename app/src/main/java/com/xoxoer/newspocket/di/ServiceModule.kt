@@ -4,8 +4,8 @@ import com.xoxoer.newspocket.annotations.BasicRetrofitAuthenticatedClient
 import com.xoxoer.newspocket.annotations.BasicRetrofitClient
 import com.xoxoer.newspocket.network.services.example.ExampleClient
 import com.xoxoer.newspocket.network.services.example.ExampleService
-import com.xoxoer.newspocket.network.services.source.SourceClient
-import com.xoxoer.newspocket.network.services.source.SourceService
+import com.xoxoer.newspocket.network.services.news.NewsClient
+import com.xoxoer.newspocket.network.services.news.NewsService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,17 +35,17 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    fun providesSourceService(
+    fun providesNewsService(
         @BasicRetrofitAuthenticatedClient retrofit: Retrofit
-    ): SourceService {
-        return retrofit.create(SourceService::class.java)
+    ): NewsService {
+        return retrofit.create(NewsService::class.java)
     }
 
     @Provides
     @Singleton
-    fun providesSourceClient(sourceService: SourceService): SourceClient {
-        return SourceClient(
-            sourceService
+    fun providesNewsClient(newsService: NewsService): NewsClient {
+        return NewsClient(
+            newsService
         )
     }
 

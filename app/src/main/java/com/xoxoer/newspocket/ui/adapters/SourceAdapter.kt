@@ -6,11 +6,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.xoxoer.newspocket.R
 import com.xoxoer.newspocket.databinding.CardViewSourceBinding
-import com.xoxoer.newspocket.extensions.toast
 import com.xoxoer.newspocket.model.source.Source
-import com.xoxoer.newspocket.ui.viewmodels.source.SourceViewModel
+import com.xoxoer.newspocket.route.InitialRouteName.HEADLINE
+import com.xoxoer.newspocket.route.Route
+import com.xoxoer.newspocket.ui.viewmodels.NewsViewModel
 
-class SourceAdapter constructor(private val sourceViewModel: SourceViewModel) :
+class SourceAdapter constructor(private val newsViewModel: NewsViewModel) :
     RecyclerView.Adapter<SourceAdapter.SourceViewHolder>() {
 
     private val items: MutableList<Source> = mutableListOf()
@@ -38,7 +39,7 @@ class SourceAdapter constructor(private val sourceViewModel: SourceViewModel) :
             source = item
             executePendingBindings()
             cardViewSource.setOnClickListener {
-                it.context.toast("New selected ${item.name}")
+                Route(it.context, HEADLINE).navigate("SOURCE", item)
             }
         }
     }

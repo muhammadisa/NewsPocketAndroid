@@ -6,7 +6,7 @@ import androidx.annotation.VisibleForTesting
 import com.xoxoer.newspocket.R
 import com.xoxoer.newspocket.base.BaseAppCompatActivity
 import com.xoxoer.newspocket.databinding.ActivityMainBinding
-import com.xoxoer.newspocket.ui.viewmodels.example.ExampleViewModel
+import com.xoxoer.newspocket.ui.viewmodels.ExampleViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

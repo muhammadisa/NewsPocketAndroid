@@ -31,7 +31,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.HomeActivity" />
+
+        <activity android:name=".ui.activities.HeadlineActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="headline.news"
+                    android:scheme="@string/app_domain" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.activities.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="dashboard.news"
+                    android:scheme="@string/app_domain" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".ui.activities.MainActivity" />
 
         <provider
