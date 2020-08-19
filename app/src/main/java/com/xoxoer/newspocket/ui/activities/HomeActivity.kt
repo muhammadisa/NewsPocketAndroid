@@ -6,6 +6,9 @@ import androidx.annotation.VisibleForTesting
 import com.xoxoer.newspocket.R
 import com.xoxoer.newspocket.base.BaseAppCompatActivity
 import com.xoxoer.newspocket.databinding.ActivityHomeBinding
+import com.xoxoer.newspocket.model.source.Source
+import com.xoxoer.newspocket.route.InitialRouteName.HEADLINE
+import com.xoxoer.newspocket.route.Route
 import com.xoxoer.newspocket.ui.adapters.HeadlineAdapter
 import com.xoxoer.newspocket.ui.adapters.SourceAdapter
 import com.xoxoer.newspocket.ui.viewmodels.NewsViewModel
@@ -29,6 +32,20 @@ class HomeActivity : BaseAppCompatActivity() {
             vm = newsViewModel
             sourceAdapter = SourceAdapter(newsViewModel)
             headlineAdapter = HeadlineAdapter()
+            imageViewSearch.setOnClickListener {
+                Route(it.context, HEADLINE).navigate(
+                    "SOURCE",
+                    Source(
+                        "",
+                        "",
+                        editTextSearchArticle.text.toString(),
+                        "",
+                        "",
+                        "Everywhere",
+                        ""
+                    )
+                )
+            }
         }
     }
 

@@ -91,10 +91,55 @@
                     android:textSize="18sp"
                     android:textStyle="bold|italic" />
 
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    app:showWhileLoading="@{vm.isLoading()}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:background="#95a5a6"
+                            android:layout_width="match_parent"
+                            android:layout_height="220dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="vertical"/>
+
+                        <LinearLayout
+                            android:background="#95a5a6"
+                            android:layout_width="match_parent"
+                            android:layout_height="220dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="vertical"/>
+
+                        <LinearLayout
+                            android:background="#95a5a6"
+                            android:layout_width="match_parent"
+                            android:layout_height="220dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="vertical"/>
+
+                        <LinearLayout
+                            android:background="#95a5a6"
+                            android:layout_width="match_parent"
+                            android:layout_height="220dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="vertical"/>
+
+                    </LinearLayout>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvHeadlineTopHeadline"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
+                    app:hideWhileLoading="@{vm.isLoading()}"
                     app:adapterHeadline="@{headlineAdapter}"
                     app:adapterHeadlineList="@{vm.headlineSuccess}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

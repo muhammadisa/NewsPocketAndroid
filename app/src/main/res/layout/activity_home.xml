@@ -76,30 +76,30 @@
             android:background="@drawable/background_search_source"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.842"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
             <EditText
-                android:id="@+id/editTextSearchSource"
+                android:id="@+id/editTextSearchArticle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginEnd="16dp"
                 android:background="@null"
                 android:ems="10"
                 android:hint="@string/search_news_source"
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.45" />
+                app:layout_constraintEnd_toStartOf="@+id/imageViewSearch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageViewSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_baseline_search_24" />
 
@@ -129,10 +129,26 @@
                     android:textStyle="bold|italic"
                     android:padding="16dp"/>
 
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_height="220dp"
+                    app:showWhileLoading="@{vm.isLoading()}">
+
+                    <LinearLayout
+                        android:background="#95a5a6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"/>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:listitem="@layout/card_view_headlines"
+                    android:visibility="gone"
+                    app:hideWhileLoading="@{vm.isLoading()}"
                     app:adapterHeadline="@{headlineAdapter}"
                     app:adapterHeadlineList="@{vm.headlineSuccess}"
                     app:rvLLM="@{llm.HORIZONTAL}"
@@ -150,10 +166,55 @@
                     android:textStyle="bold|italic"
                     android:padding="16dp" />
 
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    app:showWhileLoading="@{vm.isLoading()}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:background="#95a5a6"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="vertical"/>
+
+                        <LinearLayout
+                            android:background="#95a5a6"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="vertical"/>
+
+                        <LinearLayout
+                            android:background="#95a5a6"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="vertical"/>
+
+                        <LinearLayout
+                            android:background="#95a5a6"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="vertical"/>
+
+                    </LinearLayout>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:listitem="@layout/card_view_source"
+                    android:visibility="gone"
+                    app:hideWhileLoading="@{vm.isLoading()}"
                     app:adapterSource="@{sourceAdapter}"
                     app:adapterSourceList="@{vm.sourceSuccess}"
                     app:rvLLM="@{llm.VERTICAL}"
@@ -164,6 +225,47 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
+<!--        <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent">-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/bottom_sheet"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="80dp"-->
+<!--                android:background="@android:color/darker_gray"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:behavior_peekHeight="80dp"-->
+<!--                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:background="@color/colorAccent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Hello"-->
+<!--                    android:textColor="@android:color/white" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:background="@color/colorAccent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="@android:color/white" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:background="@color/colorAccent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="SADJKSDAKSHDKASJD"-->
+<!--                    android:textColor="@android:color/white" />-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

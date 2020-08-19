@@ -28,8 +28,13 @@ class HeadlineActivity : BaseAppCompatActivity() {
             vm = newsViewModel
             intent.getParcelableExtra<Source>("SOURCE").also { src ->
                 source = src
-                newsViewModel.source.set(src)
-                newsViewModel.fetchHeadlineBySource()
+                if(src?.id.isNullOrBlank()) {
+                    newsViewModel.source.set(src)
+                    newsViewModel.fetchEverythingByQuery()
+                }else{
+                    newsViewModel.source.set(src)
+                    newsViewModel.fetchHeadlineBySource()
+                }
             }
             headlineAdapter = HeadlineAdapter()
         }

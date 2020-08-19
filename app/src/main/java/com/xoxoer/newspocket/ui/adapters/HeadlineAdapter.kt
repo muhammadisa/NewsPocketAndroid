@@ -48,7 +48,9 @@ class HeadlineAdapter : RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder>
             }
             executePendingBindings()
             cardViewHeadline.setOnClickListener {
-                Route(it.context, NEWS_VIEWER).navigate("ARTICLE", item)
+                if(!item.url.isNullOrBlank()){
+                    Route(it.context, NEWS_VIEWER).navigate("ARTICLE", item)
+                }
             }
         }
     }

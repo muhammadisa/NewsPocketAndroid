@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface NewsService {
 
-    @GET("sources/")
+    @GET("sources")
     fun fetchSource(): Single<Sources>
 
     @GET("top-headlines?country=us")
@@ -17,6 +17,11 @@ interface NewsService {
     @GET("top-headlines")
     fun fetchHeadlineBySource(
         @Query("sources") source: String
+    ): Single<Headlines>
+
+    @GET("everything")
+    fun fetchEverythingByQuery(
+        @Query("q") query: String
     ): Single<Headlines>
 
 }

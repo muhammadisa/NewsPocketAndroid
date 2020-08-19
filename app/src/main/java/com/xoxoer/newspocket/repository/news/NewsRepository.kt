@@ -54,4 +54,18 @@ class NewsRepository @Inject constructor(
             .subscribe(handler)
     }
 
+    fun fetchEverythingByQuery(
+        query: String,
+        onStart: () -> Unit,
+        onFinish: () -> Unit,
+        handler: ApiSingleObserver<Headlines>
+    ) {
+        newsClient.fetchEverythingByQuery(query)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { onStart() }
+            .doOnTerminate { onFinish() }
+            .subscribe(handler)
+    }
+
 }

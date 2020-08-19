@@ -21,4 +21,8 @@ class NewsClient @Inject constructor(
         return newsService.fetchHeadlineBySource(source)
     }
 
+    fun fetchEverythingByQuery(query: String): Single<Headlines> {
+        return newsService.fetchEverythingByQuery(query)
+    }
+
 }

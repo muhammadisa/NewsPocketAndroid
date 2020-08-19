@@ -5,7 +5,9 @@ import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.xoxoer.newspocket.extensions.createDialog
+import com.xoxoer.newspocket.extensions.gone
 
 @BindingAdapter("errorHandler", "errorReasonHandler")
 fun bindError(
@@ -29,5 +31,32 @@ fun bindError(
 fun bindToast(view: View, text: LiveData<String>) {
     if (!text.value.isNullOrEmpty()) {
         Toast.makeText(view.context, text.value, Toast.LENGTH_SHORT).show()
+    }
+}
+
+@BindingAdapter("gone")
+fun bindGone(view: View, isGone: Boolean) {
+    view.gone(isGone)
+}
+
+@BindingAdapter("showWhileLoading")
+fun bindShowWhileLoading(view: View, isLoading: MutableLiveData<Boolean>) {
+    isLoading.observeForever {
+        if (it) {
+            view.gone(false)
+        }else{
+            view.gone(true)
+        }
+    }
+}
+
+@BindingAdapter("hideWhileLoading")
+fun bindHideWhileLoading(view: View, isLoading: MutableLiveData<Boolean>) {
+    isLoading.observeForever {
+        if (it) {
+            view.gone(true)
+        }else{
+            view.gone(false)
+        }
     }
 }
