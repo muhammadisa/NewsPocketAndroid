@@ -1,0 +1,52 @@
+package com.xoxoer.newspocket.di
+
+import com.xoxoer.newspocket.annotations.BasicRetrofitAuthenticatedClient
+import com.xoxoer.newspocket.annotations.BasicRetrofitClient
+import com.xoxoer.newspocket.network.services.example.ExampleClient
+import com.xoxoer.newspocket.network.services.example.ExampleService
+import com.xoxoer.newspocket.network.services.source.SourceClient
+import com.xoxoer.newspocket.network.services.source.SourceService
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import retrofit2.Retrofit
+import javax.inject.Singleton
+
+@Module
+@InstallIn(ApplicationComponent::class)
+object ServiceModule {
+
+    @Provides
+    @Singleton
+    fun providesExampleService(
+        @BasicRetrofitClient retrofit: Retrofit
+    ): ExampleService {
+        return retrofit.create(ExampleService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesExampleClient(exampleService: ExampleService): ExampleClient {
+        return ExampleClient(
+            exampleService
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun providesSourceService(
+        @BasicRetrofitAuthenticatedClient retrofit: Retrofit
+    ): SourceService {
+        return retrofit.create(SourceService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesSourceClient(sourceService: SourceService): SourceClient {
+        return SourceClient(
+            sourceService
+        )
+    }
+
+}
