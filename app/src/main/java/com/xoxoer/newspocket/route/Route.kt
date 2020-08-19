@@ -6,11 +6,13 @@ import com.xoxo.mnp.utils.orion.Orion
 import com.xoxo.mnp.utils.orion.OrionContract
 import com.xoxoer.newspocket.route.InitialRouteName.DASHBOARD
 import com.xoxoer.newspocket.route.InitialRouteName.HEADLINE
+import com.xoxoer.newspocket.route.InitialRouteName.NEWS_VIEWER
 
 object InitialRouteName {
     // replace this with your initial route name
     const val HEADLINE = "headline"
     const val DASHBOARD = "dashboard"
+    const val NEWS_VIEWER = "viewer"
 }
 
 class Route internal constructor(
@@ -28,7 +30,8 @@ class Route internal constructor(
     override val routes: Map<String, Uri> = mapOf(
         // deep link format : appdomain://your.desired.activity
         HEADLINE to Uri.parse("$appDomain://headline.news"),
-        DASHBOARD to Uri.parse("$appDomain://dashboard.news")
+        DASHBOARD to Uri.parse("$appDomain://dashboard.news"),
+        NEWS_VIEWER to Uri.parse("$appDomain://viewer.news")
     )
 
     fun navigate() {

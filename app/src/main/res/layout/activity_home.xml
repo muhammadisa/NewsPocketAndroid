@@ -17,6 +17,10 @@
             name="headlineAdapter"
             type="com.xoxoer.newspocket.ui.adapters.HeadlineAdapter" />
 
+        <variable
+            name="llm"
+            type="androidx.recyclerview.widget.LinearLayoutManager" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -131,7 +135,7 @@
                     tools:listitem="@layout/card_view_headlines"
                     app:adapterHeadline="@{headlineAdapter}"
                     app:adapterHeadlineList="@{vm.headlineSuccess}"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:rvLLM="@{llm.HORIZONTAL}"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 </androidx.recyclerview.widget.RecyclerView>
@@ -152,7 +156,7 @@
                     tools:listitem="@layout/card_view_source"
                     app:adapterSource="@{sourceAdapter}"
                     app:adapterSourceList="@{vm.sourceSuccess}"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:rvLLM="@{llm.VERTICAL}"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 </androidx.recyclerview.widget.RecyclerView>

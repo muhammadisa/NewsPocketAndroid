@@ -8,7 +8,8 @@ import com.xoxoer.newspocket.R
 import com.xoxoer.newspocket.databinding.CardViewHeadlinesBinding
 import com.xoxoer.newspocket.extensions.load
 import com.xoxoer.newspocket.model.headline.Article
-import com.xoxoer.newspocket.model.source.Source
+import com.xoxoer.newspocket.route.InitialRouteName.NEWS_VIEWER
+import com.xoxoer.newspocket.route.Route
 
 class HeadlineAdapter : RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder>() {
 
@@ -41,11 +42,14 @@ class HeadlineAdapter : RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder>
             item.urlToImage.let {
                 if (it.isNullOrBlank()) {
                     imageHeadline.load("https://via.placeholder.com/150")
-                }else{
+                } else {
                     imageHeadline.load(it)
                 }
             }
             executePendingBindings()
+            cardViewHeadline.setOnClickListener {
+                Route(it.context, NEWS_VIEWER).navigate("ARTICLE", item)
+            }
         }
     }
 

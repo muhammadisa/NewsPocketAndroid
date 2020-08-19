@@ -8,6 +8,7 @@
         <variable
             name="headline"
             type="com.xoxoer.newspocket.model.headline.Article" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -37,13 +38,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                tools:text="Facebook announced that video conferencing apps headlined by Zoom will be coming to its Portal video-calling devices in September."
+                android:layout_marginBottom="8dp"
                 android:text="@{headline.description}"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/cardViewHeadlinePublish"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/imageHeadline" />
+                app:layout_constraintStart_toStartOf="@+id/imageHeadline"
+                tools:text="Facebook announced that video conferencing apps headlined by Zoom will be coming to its Portal video-calling devices in September." />
 
             <TextView
                 android:id="@+id/textView14"
@@ -63,6 +64,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageHeadline"
                 tools:text="Zoom is coming to Facebook's video-chat device, Portal - CNBC" />
+
+            <TextView
+                android:id="@+id/cardViewHeadlinePublish"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:formatToReadable="@{headline.publishedAt}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView11"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView11" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
