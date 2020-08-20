@@ -24,15 +24,16 @@
         <variable
             name="vm"
             type="com.xoxoer.newspocket.ui.viewmodels.NewsViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
     <LinearLayout
-        android:id="@+id/bottom_sheet"
+        android:id="@+id/bottom_sheet_filter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/silver"
         android:orientation="horizontal"
-        app:behavior_peekHeight="60dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/news_source_filter"
+                android:text="@{vm.filterMode ? `Headline Filter` : `Source Filter`}"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold|italic"
@@ -168,7 +169,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="@{vm.filterMode ? View.GONE : View.VISIBLE}">
 
                     <TextView
                         android:id="@+id/textView17"
@@ -227,14 +229,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="@{() -> vm.fetchSource()}"
-                        android:text="@string/search_source" />
+                        android:text="@string/search_source"
+                        android:visibility="@{vm.filterMode ? View.GONE : View.VISIBLE}" />
 
                     <Button
                         android:id="@+id/filterSearchHeadlineButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@string/search_headline"
                         android:onClick="@{() -> vm.fetchHeadlineByFilter()}"
-                        android:text="@string/search_headline" />
+                        android:visibility="@{vm.filterMode ? View.VISIBLE : View.GONE}" />
 
                 </LinearLayout>
 

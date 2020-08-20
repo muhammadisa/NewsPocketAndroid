@@ -32,6 +32,7 @@ class NewsViewModel @ViewModelInject constructor(
     var category = ObservableField<String>()
     var language = ObservableField<String>()
     var country = ObservableField<String>()
+    var filterMode = ObservableField<Boolean>()
 
     fun clearSourceFilter(){
         category.set(null)

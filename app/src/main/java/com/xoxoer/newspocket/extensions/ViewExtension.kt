@@ -26,7 +26,6 @@ fun <T : View> BottomSheetBehavior<T>.hide() {
 
 fun <T : LinearLayout> View.transformToBottomSheetDialog(
     isHideable: Boolean,
-    peakHeight: Int,
     onSliding: () -> Unit,
     onExpand: () -> Unit,
     onCollapse: () -> Unit,
@@ -41,7 +40,7 @@ fun <T : LinearLayout> View.transformToBottomSheetDialog(
             as BottomSheetBehavior<T>
 
     bottomSheetBehavior.isHideable = isHideable
-    bottomSheetBehavior.peekHeight = peakHeight
+    bottomSheetBehavior.peekHeight = 0
 
     bottomSheetBehavior.addBottomSheetCallback(object :
         BottomSheetBehavior.BottomSheetCallback() {
