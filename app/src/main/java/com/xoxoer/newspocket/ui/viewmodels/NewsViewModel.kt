@@ -34,6 +34,7 @@ class NewsViewModel @ViewModelInject constructor(
     var country = ObservableField<String>()
     var filterMode = ObservableField<Boolean>()
     var keyword = ObservableField<String>()
+    var redirect = ObservableField(true)
 
     fun bottomSheetModeForHeadline() = filterMode.set(true)
 

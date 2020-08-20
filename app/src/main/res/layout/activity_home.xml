@@ -33,7 +33,7 @@
             name="bottomSheetFilter"
             type="com.google.android.material.bottomsheet.BottomSheetBehavior" />
 
-        <import type="com.xoxoer.newspocket.extensions.ViewExtensionKt"/>
+        <import type="com.xoxoer.newspocket.extensions.ViewExtensionKt" />
 
         <variable
             name="llm"
@@ -116,10 +116,10 @@
                 android:id="@+id/imageViewSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="searchHeadline"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:onClick="searchHeadline"
                 app:srcCompat="@drawable/ic_baseline_search_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -152,6 +152,35 @@
                         android:textSize="18sp"
                         android:textStyle="bold|italic" />
 
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:adapterHeadline="@{categoryAdapter}"
+                    android:clipToPadding="false"
+                    android:paddingLeft="16dp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:rvLLM="@{llm.HORIZONTAL}"
+                    android:orientation="horizontal"
+                    tools:listitem="@layout/card_view_category">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:text="@string/top_headlines"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -163,8 +192,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:contentDescription="@string/filter"
-                            app:srcCompat="@drawable/ic_baseline_filter_list_24"
-                            android:onClick="@{() -> ViewExtensionKt.interact(bottomSheetFilter, vm, `HEADLINE`)}"/>
+                            android:onClick="@{() -> ViewExtensionKt.interact(bottomSheetFilter, vm, `HEADLINE`)}"
+                            app:srcCompat="@drawable/ic_baseline_filter_list_24" />
 
                     </LinearLayout>
 
@@ -223,8 +252,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:contentDescription="@string/filter"
-                            app:srcCompat="@drawable/ic_baseline_filter_list_24"
-                            android:onClick="@{() -> ViewExtensionKt.interact(bottomSheetFilter, vm, `SOURCE`)}"/>
+                            android:onClick="@{() -> ViewExtensionKt.interact(bottomSheetFilter, vm, `SOURCE`)}"
+                            app:srcCompat="@drawable/ic_baseline_filter_list_24" />
 
                     </LinearLayout>
 

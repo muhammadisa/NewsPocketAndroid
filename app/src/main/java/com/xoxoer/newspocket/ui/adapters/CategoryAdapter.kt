@@ -6,10 +6,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.xoxoer.newspocket.R
 import com.xoxoer.newspocket.databinding.CardViewCategoryBinding
+import com.xoxoer.newspocket.route.InitialRouteName.SOURCE
+import com.xoxoer.newspocket.route.Route
 import com.xoxoer.newspocket.ui.viewmodels.NewsViewModel
 
-class CategoryAdapter constructor(private val newsViewModel: NewsViewModel)
-    : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryAdapter constructor(private val newsViewModel: NewsViewModel) :
+    RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     private val items: MutableList<String> = mutableListOf(
         "entertainment", "general", "health",
@@ -38,6 +40,9 @@ class CategoryAdapter constructor(private val newsViewModel: NewsViewModel)
             executePendingBindings()
             cardViewCategory.setOnClickListener {
                 newsViewModel.category.set(item)
+                if (newsViewModel.redirect.get()!!) {
+                    Route(it.context, SOURCE).navigate("CATEGORY", item)
+                }
             }
         }
     }

@@ -5,13 +5,9 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.xoxoer.newspocket.R
 import com.xoxoer.newspocket.base.BaseAppCompatActivity
 import com.xoxoer.newspocket.databinding.ActivityHomeBinding
-import com.xoxoer.newspocket.extensions.expand
-import com.xoxoer.newspocket.extensions.hide
-import com.xoxoer.newspocket.extensions.isExpanded
 import com.xoxoer.newspocket.extensions.transformToBottomSheetDialog
 import com.xoxoer.newspocket.model.source.Source
 import com.xoxoer.newspocket.route.InitialRouteName.HEADLINE
@@ -57,12 +53,12 @@ class HomeActivity : BaseAppCompatActivity() {
                 .transformToBottomSheetDialog<LinearLayout>(
                     isHideable = true,
                     onSliding = {},
-                    onExpand = {},
-                    onCollapse = {},
+                    onExpand = { newsViewModel.redirect.set(false) },
+                    onCollapse = { newsViewModel.redirect.set(true) },
                     onDrag = {},
                     onSettle = {},
                     onHalfExpand = {},
-                    onHide = {}
+                    onHide = { newsViewModel.redirect.set(true) }
                 )
         }
     }
