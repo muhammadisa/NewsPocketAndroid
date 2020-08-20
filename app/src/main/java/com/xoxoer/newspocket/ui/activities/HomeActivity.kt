@@ -32,6 +32,7 @@ class HomeActivity : BaseAppCompatActivity() {
     lateinit var bottomSheetFilter: BottomSheetBehavior<LinearLayout>
 
     fun headlineFilter(v: View) {
+        newsViewModel.clearSourceFilter()
         newsViewModel.filterMode.set(true)
         if (bottomSheetFilter.isExpanded()) {
             bottomSheetFilter.hide()
@@ -41,6 +42,7 @@ class HomeActivity : BaseAppCompatActivity() {
     }
 
     fun sourceFilter(v: View) {
+        newsViewModel.clearSourceFilter()
         newsViewModel.filterMode.set(false)
         if (bottomSheetFilter.isExpanded()) {
             bottomSheetFilter.hide()
