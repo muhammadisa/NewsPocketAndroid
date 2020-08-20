@@ -44,13 +44,14 @@ class NewsRepository @Inject constructor(
     }
 
     fun fetchHeadlineByFilter(
+        query: String?,
         category: String?,
         country: String?,
         onStart: () -> Unit,
         onFinish: () -> Unit,
         handler: ApiSingleObserver<Headlines>
     ) {
-        newsClient.fetchHeadlineByFilter(category, country)
+        newsClient.fetchHeadlineByFilter(query, category, country)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { onStart() }

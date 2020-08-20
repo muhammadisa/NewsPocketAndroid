@@ -33,6 +33,11 @@ class NewsViewModel @ViewModelInject constructor(
     var language = ObservableField<String>()
     var country = ObservableField<String>()
     var filterMode = ObservableField<Boolean>()
+    var keyword = ObservableField<String>()
+
+    fun bottomSheetModeForHeadline() = filterMode.set(true)
+
+    fun bottomSheetModeForSource() = filterMode.set(false)
 
     fun clearSourceFilter(){
         category.set(null)
@@ -106,6 +111,7 @@ class NewsViewModel @ViewModelInject constructor(
 
     fun fetchHeadlineByFilter() {
         newsRepository.fetchHeadlineByFilter(
+            keyword.get(),
             category.get(),
             country.get(),
             { onStart() },

@@ -29,28 +29,6 @@ class HomeActivity : BaseAppCompatActivity() {
 
     private val binding: ActivityHomeBinding by binding(R.layout.activity_home)
 
-    private lateinit var bottomSheetFilter: BottomSheetBehavior<LinearLayout>
-
-    fun headlineFilter(v: View) {
-        newsViewModel.clearSourceFilter()
-        newsViewModel.filterMode.set(true)
-        if (bottomSheetFilter.isExpanded()) {
-            bottomSheetFilter.hide()
-        } else {
-            bottomSheetFilter.expand()
-        }
-    }
-
-    fun sourceFilter(v: View) {
-        newsViewModel.clearSourceFilter()
-        newsViewModel.filterMode.set(false)
-        if (bottomSheetFilter.isExpanded()) {
-            bottomSheetFilter.hide()
-        } else {
-            bottomSheetFilter.expand()
-        }
-    }
-
     fun searchHeadline(v: View) {
         Route(v.context, HEADLINE).navigate(
             "SOURCE",
@@ -76,7 +54,7 @@ class HomeActivity : BaseAppCompatActivity() {
             languageAdapter = LanguageAdapter(newsViewModel)
             countryAdapter = CountryAdapter(newsViewModel)
             bottomSheetFilter = findViewById<LinearLayout>(R.id.bottom_sheet_filter)
-                .transformToBottomSheetDialog(
+                .transformToBottomSheetDialog<LinearLayout>(
                     isHideable = true,
                     onSliding = {},
                     onExpand = {},
@@ -88,5 +66,4 @@ class HomeActivity : BaseAppCompatActivity() {
                 )
         }
     }
-
 }

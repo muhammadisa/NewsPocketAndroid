@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.xoxoer.newspocket.extensions.createDialog
 import com.xoxoer.newspocket.extensions.gone
+import com.xoxoer.newspocket.ui.viewmodels.NewsViewModel
 
 @BindingAdapter("errorHandler", "errorReasonHandler")
 fun bindError(
@@ -44,7 +45,7 @@ fun bindShowWhileLoading(view: View, isLoading: MutableLiveData<Boolean>) {
     isLoading.observeForever {
         if (it) {
             view.gone(false)
-        }else{
+        } else {
             view.gone(true)
         }
     }
@@ -55,7 +56,7 @@ fun bindHideWhileLoading(view: View, isLoading: MutableLiveData<Boolean>) {
     isLoading.observeForever {
         if (it) {
             view.gone(true)
-        }else{
+        } else {
             view.gone(false)
         }
     }

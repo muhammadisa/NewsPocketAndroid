@@ -3,6 +3,7 @@ package com.xoxoer.newspocket.network.services.news
 import com.xoxoer.newspocket.model.headline.Headlines
 import com.xoxoer.newspocket.model.source.Sources
 import io.reactivex.Single
+import retrofit2.http.Query
 import javax.inject.Inject
 
 class NewsClient @Inject constructor(
@@ -22,10 +23,11 @@ class NewsClient @Inject constructor(
     }
 
     fun fetchHeadlineByFilter(
+        query: String?,
         category: String?,
         country: String?
     ): Single<Headlines>{
-        return newsService.fetchHeadlineByFilter(category, country)
+        return newsService.fetchHeadlineByFilter(query, category, country)
     }
 
     fun fetchHeadlineBySource(source: String): Single<Headlines> {

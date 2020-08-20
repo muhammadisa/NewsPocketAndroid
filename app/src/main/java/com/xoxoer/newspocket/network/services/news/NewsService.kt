@@ -20,6 +20,7 @@ interface NewsService {
 
     @GET("top-headlines")
     fun fetchHeadlineByFilter(
+        @Query("q") query: String?,
         @Query("category") category: String?,
         @Query("country") country: String?
     ): Single<Headlines>

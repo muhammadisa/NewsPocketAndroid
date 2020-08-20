@@ -32,7 +32,7 @@
         android:id="@+id/bottom_sheet_filter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/silver"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
@@ -142,6 +142,29 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/background_search_source"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:visibility="@{vm.filterMode ? View.VISIBLE : View.GONE}">
+
+                    <EditText
+                        android:id="@+id/editTextSearchArticle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:background="@null"
+                        android:ems="10"
+                        app:editKeywordOnVM="@{vm}"
+                        android:hint="@string/headline_keyword"
+                        android:inputType="text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
@@ -150,7 +173,7 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:text="Category"
+                        android:text="@string/category"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold|italic" />
@@ -177,7 +200,7 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:text="Language"
+                        android:text="@string/language"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold|italic" />
@@ -203,7 +226,7 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:text="Country"
+                        android:text="@string/country"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold|italic" />
@@ -236,8 +259,8 @@
                         android:id="@+id/filterSearchHeadlineButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/search_headline"
                         android:onClick="@{() -> vm.fetchHeadlineByFilter()}"
+                        android:text="@string/search_headline"
                         android:visibility="@{vm.filterMode ? View.VISIBLE : View.GONE}" />
 
                 </LinearLayout>

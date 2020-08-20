@@ -3,6 +3,7 @@ package com.xoxoer.newspocket.extensions
 import android.view.View
 import android.widget.LinearLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.xoxoer.newspocket.ui.viewmodels.NewsViewModel
 
 fun View.gone(isGone: Boolean){
     this.visibility = if(isGone){
@@ -22,6 +23,18 @@ fun <T : View> BottomSheetBehavior<T>.expand() {
 
 fun <T : View> BottomSheetBehavior<T>.hide() {
     this.state = BottomSheetBehavior.STATE_HIDDEN
+}
+
+fun <T : View> BottomSheetBehavior<T>.interact(vm: NewsViewModel, tag: String) {
+    when(tag){
+        "HEADLINE" -> vm.bottomSheetModeForHeadline()
+        "SOURCE" -> vm.bottomSheetModeForSource()
+    }
+    if(this.state == BottomSheetBehavior.STATE_EXPANDED){
+        this.state = BottomSheetBehavior.STATE_HIDDEN
+    }else{
+        this.state = BottomSheetBehavior.STATE_EXPANDED
+    }
 }
 
 fun <T : LinearLayout> View.transformToBottomSheetDialog(

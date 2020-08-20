@@ -30,6 +30,12 @@
             type="com.xoxoer.newspocket.ui.adapters.CountryAdapter" />
 
         <variable
+            name="bottomSheetFilter"
+            type="com.google.android.material.bottomsheet.BottomSheetBehavior" />
+
+        <import type="com.xoxoer.newspocket.extensions.ViewExtensionKt"/>
+
+        <variable
             name="llm"
             type="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -100,7 +106,7 @@
                 android:background="@null"
                 android:ems="10"
                 android:hint="@string/search_news_source"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageViewSearch"
                 app:layout_constraintStart_toStartOf="parent"
@@ -158,7 +164,7 @@
                             android:layout_height="match_parent"
                             android:contentDescription="@string/filter"
                             app:srcCompat="@drawable/ic_baseline_filter_list_24"
-                            android:onClick="headlineFilter"/>
+                            android:onClick="@{() -> ViewExtensionKt.interact(bottomSheetFilter, vm, `HEADLINE`)}"/>
 
                     </LinearLayout>
 
@@ -217,8 +223,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:contentDescription="@string/filter"
-                            android:onClick="sourceFilter"
-                            app:srcCompat="@drawable/ic_baseline_filter_list_24" />
+                            app:srcCompat="@drawable/ic_baseline_filter_list_24"
+                            android:onClick="@{() -> ViewExtensionKt.interact(bottomSheetFilter, vm, `SOURCE`)}"/>
 
                     </LinearLayout>
 

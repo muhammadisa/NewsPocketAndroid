@@ -15,4 +15,8 @@
     <string name="search_headline">Search Headline</string>
     <string name="search_source">Search Source</string>
     <string name="filter">Filter</string>
+    <string name="headline_keyword">Headline keyword</string>
+    <string name="category">Category</string>
+    <string name="language">Language</string>
+    <string name="country">Country</string>
 </resources>

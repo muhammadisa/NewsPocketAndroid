@@ -26,6 +26,8 @@ class HeadlineActivity : BaseAppCompatActivity() {
         binding.apply {
             lifecycleOwner = this@HeadlineActivity
             vm = newsViewModel
+            headlineAdapter = HeadlineAdapter()
+
             intent.getParcelableExtra<Source>("SOURCE").also { src ->
                 source = src
                 if(src?.id.isNullOrBlank()) {
@@ -36,7 +38,6 @@ class HeadlineActivity : BaseAppCompatActivity() {
                     newsViewModel.fetchHeadlineBySource()
                 }
             }
-            headlineAdapter = HeadlineAdapter()
         }
     }
 }
