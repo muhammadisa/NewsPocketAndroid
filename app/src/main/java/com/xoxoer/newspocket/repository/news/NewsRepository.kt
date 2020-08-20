@@ -15,11 +15,14 @@ class NewsRepository @Inject constructor(
 ) : Repository {
 
     fun fetchSource(
+        category: String?,
+        language: String?,
+        country: String?,
         onStart: () -> Unit,
         onFinish: () -> Unit,
         handler: ApiSingleObserver<Sources>
     ) {
-        newsClient.fetchSource()
+        newsClient.fetchSource(category, language, country)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { onStart() }
@@ -33,6 +36,21 @@ class NewsRepository @Inject constructor(
         handler: ApiSingleObserver<Headlines>
     ) {
         newsClient.fetchHeadline()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { onStart() }
+            .doOnTerminate { onFinish() }
+            .subscribe(handler)
+    }
+
+    fun fetchHeadlineByFilter(
+        category: String?,
+        country: String?,
+        onStart: () -> Unit,
+        onFinish: () -> Unit,
+        handler: ApiSingleObserver<Headlines>
+    ) {
+        newsClient.fetchHeadlineByFilter(category, country)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { onStart() }
@@ -56,11 +74,12 @@ class NewsRepository @Inject constructor(
 
     fun fetchEverythingByQuery(
         query: String,
+        language: String?,
         onStart: () -> Unit,
         onFinish: () -> Unit,
         handler: ApiSingleObserver<Headlines>
     ) {
-        newsClient.fetchEverythingByQuery(query)
+        newsClient.fetchEverythingByQuery(query,language)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { onStart() }

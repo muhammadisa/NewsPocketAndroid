@@ -6,16 +6,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.xoxoer.newspocket.R
 import com.xoxoer.newspocket.databinding.CardViewCategoryBinding
+import com.xoxoer.newspocket.ui.viewmodels.NewsViewModel
 
-class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryAdapter constructor(private val newsViewModel: NewsViewModel)
+    : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     private val items: MutableList<String> = mutableListOf(
-        "entertainment",
-        "general",
-        "health",
-        "science",
-        "sports",
-        "technology"
+        "entertainment", "general", "health",
+        "science", "sports", "technology"
     )
 
     override fun onCreateViewHolder(
@@ -38,7 +36,9 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>
         holder.binding.apply {
             value = item
             executePendingBindings()
-            cardViewCategory.setOnClickListener {}
+            cardViewCategory.setOnClickListener {
+                newsViewModel.category.set(item)
+            }
         }
     }
 

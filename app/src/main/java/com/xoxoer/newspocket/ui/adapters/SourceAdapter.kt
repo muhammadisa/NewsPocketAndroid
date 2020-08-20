@@ -11,12 +11,12 @@ import com.xoxoer.newspocket.route.InitialRouteName.HEADLINE
 import com.xoxoer.newspocket.route.Route
 import com.xoxoer.newspocket.ui.viewmodels.NewsViewModel
 
-class SourceAdapter constructor(private val newsViewModel: NewsViewModel) :
-    RecyclerView.Adapter<SourceAdapter.SourceViewHolder>() {
+class SourceAdapter : RecyclerView.Adapter<SourceAdapter.SourceViewHolder>() {
 
     private val items: MutableList<Source> = mutableListOf()
 
     fun addSources(source: List<Source>) {
+        items.clear()
         items.addAll(source)
         notifyDataSetChanged()
     }

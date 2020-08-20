@@ -29,6 +29,15 @@ class NewsViewModel @ViewModelInject constructor(
     override val errorReason = ObservableField<String>()
 
     var source = ObservableField<Source>()
+    var category = ObservableField<String>()
+    var language = ObservableField<String>()
+    var country = ObservableField<String>()
+
+    fun clearSourceFilter(){
+        category.set(null)
+        language.set(null)
+        country.set(null)
+    }
 
     private val _sourceSuccess = MutableLiveData<Sources>()
     val sourceSuccess: LiveData<Sources>
@@ -75,8 +84,11 @@ class NewsViewModel @ViewModelInject constructor(
             }
         }
 
-    private fun fetchSource() {
+    fun fetchSource() {
         newsRepository.fetchSource(
+            category.get(),
+            language.get(),
+            country.get(),
             { onStart() },
             { onFinish() },
             handler(_sourceSuccess)
@@ -87,6 +99,16 @@ class NewsViewModel @ViewModelInject constructor(
         newsRepository.fetchHeadline(
             { onStart() },
             { fetchSource() },
+            handler(_headlineSuccess)
+        )
+    }
+
+    fun fetchHeadlineByFilter() {
+        newsRepository.fetchHeadlineByFilter(
+            category.get(),
+            country.get(),
+            { onStart() },
+            { onFinish() },
             handler(_headlineSuccess)
         )
     }
@@ -103,6 +125,7 @@ class NewsViewModel @ViewModelInject constructor(
     fun fetchEverythingByQuery() {
         newsRepository.fetchEverythingByQuery(
             source.get()!!.description,
+            language.get(),
             { onStart() },
             { onFinish() },
             handler(_headlineSuccess)

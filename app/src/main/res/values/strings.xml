@@ -8,4 +8,9 @@
     <string name="news_sources">News Sources</string>
     <string name="top_headline_from">Top headline from</string>
     <string name="news_source_filter">News source filter</string>
+    <string name="search">Search</string>
+    <string name="filter_by">Filter by</string>
+    <string name="clear">Clear</string>
+    <string name="search_headline">Search Headline</string>
+    <string name="search_source">Search Source</string>
 </resources>

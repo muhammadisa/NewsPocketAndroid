@@ -16,6 +16,7 @@ class HeadlineAdapter : RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder>
     private val items: MutableList<Article> = mutableListOf()
 
     fun addHeadlines(headlines: List<Article>) {
+        items.clear()
         items.addAll(headlines)
         notifyDataSetChanged()
     }
@@ -48,7 +49,7 @@ class HeadlineAdapter : RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder>
             }
             executePendingBindings()
             cardViewHeadline.setOnClickListener {
-                if(!item.url.isNullOrBlank()){
+                if (!item.url.isNullOrBlank()) {
                     Route(it.context, NEWS_VIEWER).navigate("ARTICLE", item)
                 }
             }

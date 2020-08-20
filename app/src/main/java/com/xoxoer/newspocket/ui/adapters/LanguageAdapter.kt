@@ -6,10 +6,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.xoxoer.newspocket.R
 import com.xoxoer.newspocket.databinding.CardViewLanguageBinding
+import com.xoxoer.newspocket.ui.viewmodels.NewsViewModel
 
-class LanguageAdapter : RecyclerView.Adapter<LanguageAdapter.LanguageViewHolder>() {
+class LanguageAdapter constructor(private val newsViewModel: NewsViewModel)
+    : RecyclerView.Adapter<LanguageAdapter.LanguageViewHolder>() {
 
-    private val items: MutableList<String> = mutableListOf()
+    private val items: MutableList<String> = mutableListOf(
+        "ar", "de", "en", "es", "fr", "he", "it",
+        "nl", "no", "pt", "ru", "se", "ud", "zh"
+    )
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -31,7 +36,9 @@ class LanguageAdapter : RecyclerView.Adapter<LanguageAdapter.LanguageViewHolder>
         holder.binding.apply {
             value = item
             executePendingBindings()
-            cardViewLanguage.setOnClickListener {}
+            cardViewLanguage.setOnClickListener {
+                newsViewModel.language.set(item)
+            }
         }
     }
 

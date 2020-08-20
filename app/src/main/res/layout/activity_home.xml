@@ -18,6 +18,18 @@
             type="com.xoxoer.newspocket.ui.adapters.HeadlineAdapter" />
 
         <variable
+            name="categoryAdapter"
+            type="com.xoxoer.newspocket.ui.adapters.CategoryAdapter" />
+
+        <variable
+            name="languageAdapter"
+            type="com.xoxoer.newspocket.ui.adapters.LanguageAdapter" />
+
+        <variable
+            name="countryAdapter"
+            type="com.xoxoer.newspocket.ui.adapters.CountryAdapter" />
+
+        <variable
             name="llm"
             type="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -117,42 +129,42 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="16dp"
                     android:text="@string/top_headlines"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold|italic"
-                    android:padding="16dp"/>
+                    android:textStyle="bold|italic" />
 
                 <com.facebook.shimmer.ShimmerFrameLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="10dp"
                     android:layout_height="220dp"
+                    android:layout_margin="10dp"
                     app:showWhileLoading="@{vm.isLoading()}">
 
                     <LinearLayout
-                        android:background="#95a5a6"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"/>
+                        android:background="#95a5a6"
+                        android:orientation="vertical" />
 
                 </com.facebook.shimmer.ShimmerFrameLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:listitem="@layout/card_view_headlines"
                     android:visibility="gone"
-                    app:hideWhileLoading="@{vm.isLoading()}"
                     app:adapterHeadline="@{headlineAdapter}"
                     app:adapterHeadlineList="@{vm.headlineSuccess}"
+                    app:hideWhileLoading="@{vm.isLoading()}"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     app:rvLLM="@{llm.HORIZONTAL}"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                    tools:listitem="@layout/card_view_headlines">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
@@ -160,16 +172,16 @@
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="16dp"
                     android:text="@string/news_sources"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold|italic"
-                    android:padding="16dp" />
+                    android:textStyle="bold|italic" />
 
                 <com.facebook.shimmer.ShimmerFrameLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="10dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     app:showWhileLoading="@{vm.isLoading()}">
 
                     <LinearLayout
@@ -178,32 +190,32 @@
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:background="#95a5a6"
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
                             android:layout_marginBottom="15dp"
-                            android:orientation="vertical"/>
+                            android:background="#95a5a6"
+                            android:orientation="vertical" />
 
                         <LinearLayout
-                            android:background="#95a5a6"
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
                             android:layout_marginBottom="15dp"
-                            android:orientation="vertical"/>
+                            android:background="#95a5a6"
+                            android:orientation="vertical" />
 
                         <LinearLayout
-                            android:background="#95a5a6"
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
                             android:layout_marginBottom="15dp"
-                            android:orientation="vertical"/>
+                            android:background="#95a5a6"
+                            android:orientation="vertical" />
 
                         <LinearLayout
-                            android:background="#95a5a6"
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
                             android:layout_marginBottom="15dp"
-                            android:orientation="vertical"/>
+                            android:background="#95a5a6"
+                            android:orientation="vertical" />
 
                     </LinearLayout>
 
@@ -212,13 +224,13 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:listitem="@layout/card_view_source"
-                    android:visibility="gone"
-                    app:hideWhileLoading="@{vm.isLoading()}"
                     app:adapterSource="@{sourceAdapter}"
                     app:adapterSourceList="@{vm.sourceSuccess}"
+                    app:hideWhileLoading="@{vm.isLoading()}"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     app:rvLLM="@{llm.VERTICAL}"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                    android:layout_marginBottom="100dp"
+                    tools:listitem="@layout/card_view_source">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
@@ -230,7 +242,12 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <include layout="@layout/layout_filter_source"/>
+            <include
+                layout="@layout/layout_filter_source"
+                app:categoryAdapter="@{categoryAdapter}"
+                app:countryAdapter="@{countryAdapter}"
+                app:languageAdapter="@{languageAdapter}"
+                app:vm="@{vm}"/>
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

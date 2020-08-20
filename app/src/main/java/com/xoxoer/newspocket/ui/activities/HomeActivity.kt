@@ -9,8 +9,7 @@ import com.xoxoer.newspocket.databinding.ActivityHomeBinding
 import com.xoxoer.newspocket.model.source.Source
 import com.xoxoer.newspocket.route.InitialRouteName.HEADLINE
 import com.xoxoer.newspocket.route.Route
-import com.xoxoer.newspocket.ui.adapters.HeadlineAdapter
-import com.xoxoer.newspocket.ui.adapters.SourceAdapter
+import com.xoxoer.newspocket.ui.adapters.*
 import com.xoxoer.newspocket.ui.viewmodels.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,8 +29,12 @@ class HomeActivity : BaseAppCompatActivity() {
         binding.apply {
             lifecycleOwner = this@HomeActivity
             vm = newsViewModel
-            sourceAdapter = SourceAdapter(newsViewModel)
+            sourceAdapter = SourceAdapter()
             headlineAdapter = HeadlineAdapter()
+            categoryAdapter = CategoryAdapter(newsViewModel)
+            languageAdapter = LanguageAdapter(newsViewModel)
+            countryAdapter = CountryAdapter(newsViewModel)
+
             imageViewSearch.setOnClickListener {
                 Route(it.context, HEADLINE).navigate(
                     "SOURCE",

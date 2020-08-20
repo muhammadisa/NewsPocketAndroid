@@ -9,20 +9,31 @@ class NewsClient @Inject constructor(
     private val newsService: NewsService
 ) {
 
-    fun fetchSource(): Single<Sources> {
-        return newsService.fetchSource()
+    fun fetchSource(
+        category: String?,
+        language: String?,
+        country: String?
+    ): Single<Sources> {
+        return newsService.fetchSource(category, language, country)
     }
 
     fun fetchHeadline(): Single<Headlines> {
         return newsService.fetchHeadline()
     }
 
+    fun fetchHeadlineByFilter(
+        category: String?,
+        country: String?
+    ): Single<Headlines>{
+        return newsService.fetchHeadlineByFilter(category, country)
+    }
+
     fun fetchHeadlineBySource(source: String): Single<Headlines> {
         return newsService.fetchHeadlineBySource(source)
     }
 
-    fun fetchEverythingByQuery(query: String): Single<Headlines> {
-        return newsService.fetchEverythingByQuery(query)
+    fun fetchEverythingByQuery(query: String, language: String?): Single<Headlines> {
+        return newsService.fetchEverythingByQuery(query, language)
     }
 
 }

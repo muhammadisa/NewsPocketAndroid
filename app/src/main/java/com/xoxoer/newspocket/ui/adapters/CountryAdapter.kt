@@ -6,8 +6,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.xoxoer.newspocket.R
 import com.xoxoer.newspocket.databinding.CardViewCountryBinding
+import com.xoxoer.newspocket.ui.viewmodels.NewsViewModel
 
-class CountryAdapter : RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
+class CountryAdapter constructor(private val newsViewModel: NewsViewModel)
+    : RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
 
     private val items: MutableList<String> = mutableListOf(
         "ae", "ar", "at", "au", "be", "bg", "br", "ca", "ch",
@@ -38,7 +40,9 @@ class CountryAdapter : RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() 
         holder.binding.apply {
             value = item
             executePendingBindings()
-            cardViewCountry.setOnClickListener {}
+            cardViewCountry.setOnClickListener {
+                newsViewModel.country.set(item)
+            }
         }
     }
 
