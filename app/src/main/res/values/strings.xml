@@ -7,4 +7,5 @@
     <string name="top_headlines">Top Headlines</string>
     <string name="news_sources">News Sources</string>
     <string name="top_headline_from">Top headline from</string>
+    <string name="news_source_filter">News source filter</string>
 </resources>
