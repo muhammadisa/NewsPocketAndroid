@@ -17,11 +17,14 @@ fun bindError(
     errorReason: ObservableField<String>
 ) {
     when (error.get()) {
-        true -> view
-            .context.createDialog(
+        true -> {
+            view.context.createDialog(
                 "Alert",
                 errorReason.get()!!
             ).show()
+            error.set(false)
+            errorReason.set(null)
+        }
 
         false -> {
         }

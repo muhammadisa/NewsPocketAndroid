@@ -4,7 +4,10 @@ import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import com.xoxoer.lifemarklibrary.Lifemark
 import com.xoxoer.newspocket.model.headline.Headlines
 import com.xoxoer.newspocket.model.source.Source
@@ -12,10 +15,7 @@ import com.xoxoer.newspocket.model.source.Sources
 import com.xoxoer.newspocket.repository.news.NewsRepository
 import com.xoxoer.newspocket.utils.rx.ApiSingleObserver
 import com.xoxoer.newspocket.utils.rx.Error
-import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.coroutines.flow.filter
-import timber.log.Timber
 
 class NewsViewModel @ViewModelInject constructor(
     private val newsRepository: NewsRepository,
@@ -40,7 +40,7 @@ class NewsViewModel @ViewModelInject constructor(
 
     fun bottomSheetModeForSource() = filterMode.set(false)
 
-    fun clearSourceFilter(){
+    fun clearSourceFilter() {
         category.set(null)
         language.set(null)
         country.set(null)

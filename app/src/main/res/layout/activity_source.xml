@@ -20,6 +20,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:errorHandler="@{vm.error}"
+        app:errorReasonHandler="@{vm.errorReason}"
         tools:context=".ui.activities.SourceActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout

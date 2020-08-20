@@ -35,9 +35,7 @@
 
         <import type="com.xoxoer.newspocket.extensions.ViewExtensionKt" />
 
-        <variable
-            name="llm"
-            type="androidx.recyclerview.widget.LinearLayoutManager" />
+        <import type="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </data>
 
@@ -45,6 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
+        app:errorHandler="@{vm.error}"
+        app:errorReasonHandler="@{vm.errorReason}"
         tools:context="com.xoxoer.newspocket.ui.activities.HomeActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -157,12 +157,12 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:adapterHeadline="@{categoryAdapter}"
                     android:clipToPadding="false"
-                    android:paddingLeft="16dp"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    app:rvLLM="@{llm.HORIZONTAL}"
                     android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    app:adapterHeadline="@{categoryAdapter}"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:rvLLM="@{LinearLayoutManager.HORIZONTAL}"
                     tools:listitem="@layout/card_view_category">
 
                 </androidx.recyclerview.widget.RecyclerView>
@@ -221,7 +221,7 @@
                     app:adapterHeadlineList="@{vm.headlineSuccess}"
                     app:hideWhileLoading="@{vm.isLoading()}"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    app:rvLLM="@{llm.HORIZONTAL}"
+                    app:rvLLM="@{LinearLayoutManager.HORIZONTAL}"
                     tools:listitem="@layout/card_view_headlines">
 
                 </androidx.recyclerview.widget.RecyclerView>
@@ -310,7 +310,7 @@
                     app:adapterSourceList="@{vm.sourceSuccess}"
                     app:hideWhileLoading="@{vm.isLoading()}"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    app:rvLLM="@{llm.VERTICAL}"
+                    app:rvLLM="@{LinearLayoutManager.VERTICAL}"
                     tools:listitem="@layout/card_view_source">
 
                 </androidx.recyclerview.widget.RecyclerView>

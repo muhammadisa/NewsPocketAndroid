@@ -22,6 +22,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:errorHandler="@{vm.error}"
+        app:errorReasonHandler="@{vm.errorReason}"
         tools:context=".ui.activities.HeadlineActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -93,8 +95,8 @@
 
                 <com.facebook.shimmer.ShimmerFrameLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="10dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     app:showWhileLoading="@{vm.isLoading()}">
 
                     <LinearLayout
@@ -103,32 +105,32 @@
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:background="#95a5a6"
                             android:layout_width="match_parent"
                             android:layout_height="220dp"
                             android:layout_marginBottom="15dp"
-                            android:orientation="vertical"/>
+                            android:background="#95a5a6"
+                            android:orientation="vertical" />
 
                         <LinearLayout
-                            android:background="#95a5a6"
                             android:layout_width="match_parent"
                             android:layout_height="220dp"
                             android:layout_marginBottom="15dp"
-                            android:orientation="vertical"/>
+                            android:background="#95a5a6"
+                            android:orientation="vertical" />
 
                         <LinearLayout
-                            android:background="#95a5a6"
                             android:layout_width="match_parent"
                             android:layout_height="220dp"
                             android:layout_marginBottom="15dp"
-                            android:orientation="vertical"/>
+                            android:background="#95a5a6"
+                            android:orientation="vertical" />
 
                         <LinearLayout
-                            android:background="#95a5a6"
                             android:layout_width="match_parent"
                             android:layout_height="220dp"
                             android:layout_marginBottom="15dp"
-                            android:orientation="vertical"/>
+                            android:background="#95a5a6"
+                            android:orientation="vertical" />
 
                     </LinearLayout>
 
@@ -138,13 +140,13 @@
                     android:id="@+id/rvHeadlineTopHeadline"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="100dp"
                     android:visibility="gone"
-                    app:hideWhileLoading="@{vm.isLoading()}"
                     app:adapterHeadline="@{headlineAdapter}"
                     app:adapterHeadlineList="@{vm.headlineSuccess}"
+                    app:hideWhileLoading="@{vm.isLoading()}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    android:layout_marginBottom="100dp"
                     tools:listitem="@layout/card_view_headlines">
 
                 </androidx.recyclerview.widget.RecyclerView>
