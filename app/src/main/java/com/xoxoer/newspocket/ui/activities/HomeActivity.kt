@@ -29,7 +29,7 @@ class HomeActivity : BaseAppCompatActivity() {
 
     private val binding: ActivityHomeBinding by binding(R.layout.activity_home)
 
-    lateinit var bottomSheetFilter: BottomSheetBehavior<LinearLayout>
+    private lateinit var bottomSheetFilter: BottomSheetBehavior<LinearLayout>
 
     fun headlineFilter(v: View) {
         newsViewModel.clearSourceFilter()
