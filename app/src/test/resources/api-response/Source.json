@@ -1,0 +1,14 @@
+{
+  "status": "ok",
+  "sources": [
+    {
+      "id": "source_id",
+      "name": "source_name",
+      "description": "source_description",
+      "url": "https://abcnews.go.com",
+      "category": "general",
+      "language": "en",
+      "country": "us"
+    }
+  ]
+}

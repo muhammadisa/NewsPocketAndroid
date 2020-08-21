@@ -1,0 +1,19 @@
+{
+  "status": "ok",
+  "totalResults": 38,
+  "articles": [
+    {
+      "source": {
+        "id": "article_source_id",
+        "name": "article_source_name"
+      },
+      "author": "https://www.facebook.com/bbcnews",
+      "title": "article_title",
+      "description": "article_description",
+      "url": "https://www.bbc.com/news/world-europe-53865811",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/5B9D/production/_114035432_mediaitem114035431.jpg",
+      "publishedAt": "2020-08-21T16:18:45Z",
+      "content": "article_content"
+    }
+  ]
+}

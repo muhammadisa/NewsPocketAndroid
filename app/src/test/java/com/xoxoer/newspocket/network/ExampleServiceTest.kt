@@ -18,6 +18,7 @@ import java.io.IOException
 
 @RunWith(MockitoJUnitRunner::class)
 class ExampleServiceTest : ApiAbstract<ExampleService>() {
+
     private lateinit var service: ExampleService
     private val client: ExampleClient = mock()
 
