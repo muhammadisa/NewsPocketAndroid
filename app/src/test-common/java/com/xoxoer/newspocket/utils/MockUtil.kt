@@ -7,6 +7,8 @@ import com.xoxoer.newspocket.model.source.Source
 import com.xoxoer.newspocket.model.source.Sources
 
 object MockUtil {
+
+    // examples mock
     fun mockExample() = Example(
         id = 1,
         postId = 2,
@@ -15,6 +17,7 @@ object MockUtil {
         name = "example_name"
     )
 
+    // sources mock
     fun mockSource() = Sources(
         listOf(
             Source(
@@ -30,6 +33,7 @@ object MockUtil {
         "ok"
     )
 
+    // headlines mock
     fun mockHeadline() = Headlines(
         listOf(
             Article(
