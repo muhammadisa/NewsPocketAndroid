@@ -10,10 +10,11 @@ class HeaderInterceptor constructor(private val context: Context) :
     Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        Hawk.init(context).build()
+//        Hawk.init(context).build()
+        val tempToken = ""
         val request: Request = chain.request().newBuilder()
 //            .addHeader("Authorization", "Bearer ${Hawk.get<String>("ACCESS_TOKEN")}")
-            .addHeader("Authorization", "Bearer cd8085d41caf47f9b6962246e02a3490")
+            .addHeader("Authorization", "Bearer $tempToken")
             .build()
         return chain.proceed(request)
     }
